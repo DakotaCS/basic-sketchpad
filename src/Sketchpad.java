@@ -10,6 +10,7 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+//test comment for recompile
 public class Sketchpad extends JFrame implements Serializable{
     private Canvas canvas;
     private Mode mode;
