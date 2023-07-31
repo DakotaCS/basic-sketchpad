@@ -10,7 +10,6 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-//test comment for recompile
 public class Sketchpad extends JFrame implements Serializable{
     private Canvas canvas;
     private Mode mode;
@@ -67,7 +66,6 @@ public class Sketchpad extends JFrame implements Serializable{
         JButton copyButton = new JButton("Copy");
         controlPanel.add(copyButton);
 
-        // Adding "Save" and "Load" buttons to the control panel
         JButton saveButton = new JButton("Save");
         controlPanel.add(saveButton);
 
