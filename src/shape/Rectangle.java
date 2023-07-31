@@ -1,0 +1,40 @@
+package shape;
+
+import java.awt.*;
+import java.io.Serializable;
+
+public class Rectangle extends Shape implements Serializable {
+    private int width;
+    private int height;
+
+    public Rectangle(Point startPoint) {
+        super(startPoint);
+        this.width = 0;
+        this.height = 0;
+    }
+
+    public void updateShape(Point endPoint) {
+        width = endPoint.x - startPoint.x;
+        height = endPoint.y - startPoint.y;
+    }
+
+    public void updateShape(int dx, int dy) {
+        startPoint.x += dx;
+        startPoint.y += dy;
+    }
+
+    public void draw(Graphics2D g2d) {
+        g2d.setColor(color);
+        g2d.setStroke(new BasicStroke(lineWidth));
+        g2d.drawRect(startPoint.x, startPoint.y, width, height);
+    }
+
+    public  Shape copy(Point newPoint) {
+        Rectangle copy = new Rectangle(newPoint);
+        copy.color = color;
+        copy.lineWidth = lineWidth;
+        copy.width = width;
+        copy.height = height;
+        return copy;
+    }
+}
