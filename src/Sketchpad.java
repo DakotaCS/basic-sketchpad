@@ -1,18 +1,21 @@
 import mode.*;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.EmptyStackException;
-import java.util.Optional;
-import java.util.Stack;
-import java.util.stream.Collectors;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-public class Sketchpad extends JFrame implements Serializable{
+/**
+ *
+ * @author dakota
+ * @version 1.0
+ * @since 2023-07-31
+ *
+ *  Defines the basic controls for the layout of the sketchpad and button operations
+ */
+public class Sketchpad extends JFrame implements Serializable {
     private Canvas canvas;
     private Mode mode;
     public Sketchpad() {

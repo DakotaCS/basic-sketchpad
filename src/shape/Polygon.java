@@ -4,6 +4,14 @@ import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ *
+ * @author dakota
+ * @version 1.0
+ * @since 2023-07-31
+ *
+ *  Defines a Shape of type Polygon.
+ */
 public class Polygon extends Shape implements Serializable {
     private ArrayList<Point> points;
 
@@ -23,7 +31,6 @@ public class Polygon extends Shape implements Serializable {
             point.y += dy;
         }
     }
-
     public void draw(Graphics2D g2d) {
         g2d.setColor(color);
         g2d.setStroke(new BasicStroke(lineWidth));
@@ -37,7 +44,6 @@ public class Polygon extends Shape implements Serializable {
         }
         g2d.drawPolygon(xPoints, yPoints, points.size());
     }
-
     public Shape copy(Point newPoint) {
         Polygon copy = new Polygon(newPoint);
         copy.color = new Color(color.getRGB());

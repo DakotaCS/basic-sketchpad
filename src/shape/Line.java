@@ -3,6 +3,14 @@ package shape;
 import java.awt.*;
 import java.io.Serializable;
 
+/**
+ *
+ * @author dakota
+ * @version 1.0
+ * @since 2023-07-31
+ *
+ *  Defines a Shape of type Line.
+ */
 public class Line extends Shape implements Serializable {
     private Point endPoint;
 
@@ -21,18 +29,17 @@ public class Line extends Shape implements Serializable {
         endPoint.x += dx;
         endPoint.y += dy;
     }
-
     public void draw(Graphics2D g2d) {
         g2d.setColor(color);
         g2d.setStroke(new BasicStroke(lineWidth));
         g2d.drawLine(startPoint.x, startPoint.y, endPoint.x, endPoint.y);
     }
-
     public Shape copy(Point newPoint) {
         Line copy = new Line(newPoint);
         copy.color = color;
         copy.lineWidth = lineWidth;
-        copy.endPoint = new Point(endPoint.x - startPoint.x + newPoint.x, endPoint.y - startPoint.y + newPoint.y);
+        copy.endPoint = new Point(
+                endPoint.x - startPoint.x + newPoint.x, endPoint.y - startPoint.y + newPoint.y);
         return copy;
     }
 }

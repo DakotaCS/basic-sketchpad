@@ -3,6 +3,14 @@ package shape;
 import java.awt.*;
 import java.io.Serializable;
 
+/**
+ *
+ * @author dakota
+ * @version 1.0
+ * @since 2023-07-31
+ *
+ *  Defines a Shape of type Circle.
+ */
 public class Circle extends Shape implements Serializable {
     private int diameter;
 
@@ -10,13 +18,11 @@ public class Circle extends Shape implements Serializable {
         super(startPoint);
         this.diameter = 0;
     }
-
     public void updateShape(Point endPoint) {
         int dx = endPoint.x - startPoint.x;
         int dy = endPoint.y - startPoint.y;
         diameter = Math.min(dx, dy);
     }
-
     public void updateShape(int dx, int dy) {
         startPoint.x += dx;
         startPoint.y += dy;
@@ -27,7 +33,6 @@ public class Circle extends Shape implements Serializable {
         g2d.setStroke(new BasicStroke(lineWidth));
         g2d.drawOval(startPoint.x, startPoint.y, diameter, diameter);
     }
-
     public  Shape copy(Point newPoint) {
         Circle copy = new Circle(newPoint);
         copy.color = color;

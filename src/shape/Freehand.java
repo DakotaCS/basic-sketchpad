@@ -4,6 +4,14 @@ import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ *
+ * @author dakota
+ * @version 1.0
+ * @since 2023-07-31
+ *
+ *  Defines a Shape of type Freehand.
+ */
 public class Freehand extends Shape implements Serializable {
     private ArrayList<Point> points;
 
@@ -22,7 +30,6 @@ public class Freehand extends Shape implements Serializable {
             point.y += dy;
         }
     }
-
     public void draw(Graphics2D g2d) {
         g2d.setColor(color);
         g2d.setStroke(new BasicStroke(lineWidth));
@@ -32,7 +39,6 @@ public class Freehand extends Shape implements Serializable {
             g2d.drawLine(p1.x, p1.y, p2.x, p2.y);
         }
     }
-
     public Shape copy(Point newPoint) {
         Freehand copy = new Freehand(newPoint);
         copy.color = new Color(color.getRGB());

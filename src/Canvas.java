@@ -13,6 +13,14 @@ import java.util.Optional;
 import java.util.Stack;
 import java.util.stream.Collectors;
 
+/**
+ *
+ * @author dakota
+ * @version 1.0
+ * @since 2023-07-31
+ *
+ *  Defines operations that pertain to the Canvas object of the Sketchpad.
+ */
 class Canvas extends JPanel implements Serializable {
     private Color drawingColor;
     private int lineWidth;
@@ -64,10 +72,6 @@ class Canvas extends JPanel implements Serializable {
 
     public ArrayList<shape.Shape> getShapes() {
         return shapes;
-    }
-
-    public void setShapeList(ArrayList<shape.Shape> shapes) {
-        this.shapes = shapes;
     }
 
     public shape.Shape getSelectedShape() {
