@@ -1,4 +1,5 @@
 import mode.*;
+import shape.Shape;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -92,13 +93,13 @@ public class Sketchpad extends JFrame implements Serializable {
         copyButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 modeComboBox.setSelectedItem("Select");
-                shape.Shape currentShape = getSelectedShape();
+                Shape currentShape = getSelectedShape();
 
                 canvas.addMouseListener(new MouseAdapter() {
                     public void mouseClicked(MouseEvent em) {
                         canvas.copySelectedShape(em.getPoint(), currentShape);
                         canvas.removeMouseListener(this);
-                        modeComboBox.setSelectedItem("shape.Freehand");
+                        modeComboBox.setSelectedItem("Freehand");
                     }
                 });
             }
@@ -107,13 +108,13 @@ public class Sketchpad extends JFrame implements Serializable {
         moveButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 modeComboBox.setSelectedItem("Select");
-                shape.Shape currentShape = getSelectedShape();
+                Shape currentShape = getSelectedShape();
 
                 canvas.addMouseListener(new MouseAdapter() {
                     public void mouseClicked(MouseEvent em) {
                         canvas.moveSelectedShape(em.getPoint(), currentShape);
                         canvas.removeMouseListener(this);
-                        modeComboBox.setSelectedItem("shape.Freehand");
+                        modeComboBox.setSelectedItem("Freehand");
                     }
                 });
             }
@@ -156,7 +157,7 @@ public class Sketchpad extends JFrame implements Serializable {
 
         resetButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                modeComboBox.setSelectedItem("shape.Freehand");
+                modeComboBox.setSelectedItem("Freehand");
                 canvas.resetCanvas();
             }
         });
@@ -173,7 +174,7 @@ public class Sketchpad extends JFrame implements Serializable {
                 canvas.deleteSelectedShape();
             }
         });
-        setMode("shape.Freehand");
+        setMode("Freehand");
     }
 
     // Method to save the canvas to a file
@@ -181,7 +182,7 @@ public class Sketchpad extends JFrame implements Serializable {
         JFileChooser fileChooser = new JFileChooser();
         int result = fileChooser.showSaveDialog(this);
 
-        ArrayList<shape.Shape> shapes = canvas.getShapes();
+        ArrayList<Shape> shapes = canvas.getShapes();
 
         if (result == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
@@ -199,13 +200,13 @@ public class Sketchpad extends JFrame implements Serializable {
     private void loadCanvasFromFile() {
         JFileChooser fileChooser = new JFileChooser();
         int result = fileChooser.showOpenDialog(this);
-        ArrayList<shape.Shape> shapes = canvas.getShapes();
+        ArrayList<Shape> shapes = canvas.getShapes();
 
         if (result == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
 
             try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-                ArrayList<shape.Shape> loadedShapes = (ArrayList<shape.Shape>) ois.readObject();
+                ArrayList<Shape> loadedShapes = (ArrayList<Shape>) ois.readObject();
                 shapes.clear();
                 shapes.addAll(loadedShapes);
                 canvas.updateObjectDropdownBox();
@@ -221,31 +222,31 @@ public class Sketchpad extends JFrame implements Serializable {
         canvas.setSelectedShape(selectedShape);
     }
 
-    private shape.Shape getSelectedShape() {
+    private Shape getSelectedShape() {
         return canvas.getSelectedShape();
     }
 
     private void setMode(String selectedMode) {
         switch (selectedMode) {
-            case "shape.Freehand":
+            case "Freehand":
                 mode = new FreehandMode();
                 break;
-            case "shape.Line":
+            case "Line":
                 mode = new LineMode();
                 break;
-            case "shape.Rectangle":
+            case "Rectangle":
                 mode = new RectangleMode();
                 break;
-            case "shape.Ellipse":
+            case "Ellipse":
                 mode = new EllipseMode();
                 break;
-            case "shape.Square":
+            case "Square":
                 mode = new SquareMode();
                 break;
-            case "shape.Circle":
+            case "Circle":
                 mode = new CircleMode();
                 break;
-            case "shape.Polygon":
+            case "Polygon":
                 mode = new PolygonMode();
                 break;
             case "Select":

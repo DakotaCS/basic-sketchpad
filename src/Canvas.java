@@ -1,6 +1,5 @@
-import mode.Mode;
+import mode.*;
 import shape.Shape;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -26,11 +25,11 @@ class Canvas extends JPanel implements Serializable {
     private int lineWidth;
     private ArrayList<Shape> shapes;
     private Stack<Shape> redoStack = new Stack<>();
-    private shape.Shape currentShape;
+    private Shape currentShape;
     private Point startPoint;
     private Mode mode;
     private JComboBox<String> objectDropdownBox;
-    private shape.Shape selectedShape;
+    private Shape selectedShape;
     private Color selectedShapeColor;
 
     public Canvas() {
@@ -70,17 +69,17 @@ class Canvas extends JPanel implements Serializable {
         });
     }
 
-    public ArrayList<shape.Shape> getShapes() {
+    public ArrayList<Shape> getShapes() {
         return shapes;
     }
 
-    public shape.Shape getSelectedShape() {
+    public Shape getSelectedShape() {
         String item = (String) objectDropdownBox.getSelectedItem();
         Optional<Shape> result = shapes.stream()
                 .filter(Shape -> Shape.toString().equals(item))
                 .findFirst();
         if (result.isPresent()) {
-            shape.Shape selectedShape = result.get();
+            Shape selectedShape = result.get();
             return selectedShape;
         }
         else {
@@ -88,16 +87,16 @@ class Canvas extends JPanel implements Serializable {
         }
     }
 
-    public void copySelectedShape(Point pointToMoveTo, shape.Shape shape) {
+    public void copySelectedShape(Point pointToMoveTo, Shape shape) {
         if (shape != null) {
-            shape.Shape copy = shape.copy(new Point(pointToMoveTo));
+            Shape copy = shape.copy(new Point(pointToMoveTo));
             shapes.add(copy);
             updateObjectDropdownBox();
             repaint();
         }
     }
 
-    public void moveSelectedShape(Point pointToMoveTo, shape.Shape shape) {
+    public void moveSelectedShape(Point pointToMoveTo, Shape shape) {
         if (shape != null) {
             int dx = pointToMoveTo.x - shape.startPoint.x;
             int dy = pointToMoveTo.y - shape.startPoint.y;
@@ -133,11 +132,11 @@ class Canvas extends JPanel implements Serializable {
 
     public void deleteSelectedShape() {
         if(selectedShape!=null) {
-            Optional<shape.Shape> result = shapes.stream()
+            Optional<Shape> result = shapes.stream()
                     .filter(Shape -> Shape.toString().equals(selectedShape.toString()))
                     .findFirst();
             if (result.isPresent()) {
-                shape.Shape selectedShape = result.get();
+                Shape selectedShape = result.get();
                 redoStack.push(selectedShape);
                 shapes.remove(selectedShape);
                 repaint();
@@ -162,11 +161,11 @@ class Canvas extends JPanel implements Serializable {
         this.selectedShape=null;
         this.selectedShapeColor=null;
 
-        Optional<shape.Shape> result = shapes.stream()
+        Optional<Shape> result = shapes.stream()
                 .filter(Shape -> Shape.toString().equals(shapeName))
                 .findFirst();
         if (result.isPresent()) {
-            shape.Shape selectedShape = result.get();
+            Shape selectedShape = result.get();
             this.selectedShapeColor = selectedShape.getColor();
             this.selectedShape = selectedShape;
             selectedShape.setColor(Color.red);
@@ -176,7 +175,7 @@ class Canvas extends JPanel implements Serializable {
 
     public void popObject() {
         if (!shapes.isEmpty()) {
-            shape.Shape shape = shapes.remove(shapes.size() - 1);
+            Shape shape = shapes.remove(shapes.size() - 1);
             redoStack.push(shape);
             repaint();
         }
@@ -186,7 +185,7 @@ class Canvas extends JPanel implements Serializable {
     public void pushObject() {
         try {
             if (redoStack.peek() != null) {
-                shape.Shape shape = redoStack.pop();
+                Shape shape = redoStack.pop();
                 shapes.add(shape);
                 repaint();
             }
@@ -208,7 +207,7 @@ class Canvas extends JPanel implements Serializable {
 
     public ArrayList<String> getShapeListToString() {
         return shapes.stream()
-                .map(shape.Shape::toString)
+                .map(Shape::toString)
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
@@ -216,7 +215,7 @@ class Canvas extends JPanel implements Serializable {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
 
-        for (shape.Shape shape : shapes) {
+        for (Shape shape : shapes) {
             shape.draw(g2d);
         }
     }
