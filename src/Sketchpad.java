@@ -20,7 +20,7 @@ public class Sketchpad extends JFrame implements Serializable {
     private Mode mode;
     public Sketchpad() {
         setTitle("Sketchpad");
-        setSize(1200, 600);
+        setSize(1300, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         canvas = new Canvas();
@@ -29,17 +29,17 @@ public class Sketchpad extends JFrame implements Serializable {
         JPanel controlPanel = new JPanel();
         getContentPane().add(controlPanel, BorderLayout.NORTH);
 
-        JLabel modeLabel = new JLabel("mode.Mode:");
+        JLabel modeLabel = new JLabel("Mode:");
         controlPanel.add(modeLabel);
 
         JComboBox<String> modeComboBox = new JComboBox<>();
-        modeComboBox.addItem("shape.Freehand");
-        modeComboBox.addItem("shape.Line");
-        modeComboBox.addItem("shape.Rectangle");
-        modeComboBox.addItem("shape.Ellipse");
-        modeComboBox.addItem("shape.Square");
-        modeComboBox.addItem("shape.Circle");
-        modeComboBox.addItem("shape.Polygon");
+        modeComboBox.addItem("Freehand");
+        modeComboBox.addItem("Line");
+        modeComboBox.addItem("Rectangle");
+        modeComboBox.addItem("Ellipse");
+        modeComboBox.addItem("Square");
+        modeComboBox.addItem("Circle");
+        modeComboBox.addItem("Polygon");
         modeComboBox.addItem("Select");
         controlPanel.add(modeComboBox);
 
