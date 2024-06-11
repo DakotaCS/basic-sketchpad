@@ -1,1 +1,3 @@
-test readme
+Basic sketchpad application demo for a course at Western University. 
+
+The application has a simple UI that allows the user to open or save drawings. Additionally, you can create basic shapes and redo/undo your drawn objects as the need arises. 
