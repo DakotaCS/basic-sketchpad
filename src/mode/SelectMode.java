@@ -11,7 +11,6 @@ import java.awt.*;
  *  Select mode allows the user to select an object via the dropdown menu.
  */
 public class SelectMode implements Mode {
-
     public shape.Shape createShape(Point startPoint) {
         return null;
     }
